@@ -1,0 +1,56 @@
+<form
+  class="auth-form"
+  action=""
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit($event)">
+  <h2>Regisztráció</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput formControlName="email" />
+    <mat-error *ngIf="error.getError(registerForm, 'email', 'required')">
+      A mező kitöltése kötelező
+    </mat-error>
+    <mat-error *ngIf="error.getError(registerForm, 'email', 'email')">
+      Az email cím nem megfelelő
+    </mat-error>
+  </mat-form-field>
+
+  <ng-container formGroupName="passwordFormGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Jelszó</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="password"
+        [errorStateMatcher]="passwordGroupErrorStateMatcher" />
+      <mat-error *ngIf="getPasswordErrors('required')">
+        A mező kitöltése kötelező
+      </mat-error>
+      <mat-error *ngIf="getPasswordErrors('minlength')">
+        A jelszó legalább 6 karakter hosszú kell hogy legyen</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Jelszó ismét</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="passwordConfirmation"
+        [errorStateMatcher]="passwordGroupErrorStateMatcher" />
+      <mat-error *ngIf="getPasswordErrors('required')">
+        A mező kitöltése kötelező
+      </mat-error>
+      <!-- <mat-error *ngIf="getPasswordErrors('minlength')">
+          A jelszó legalább 6 karakter hosszú kell hogy legyen</mat-error
+        > -->
+      <mat-error *ngIf="getPasswordsNotEqualsError()">
+        A jelszavak nem egyeznek
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+
+  <button mat-raised-button color="primary" [disabled]="!registerForm.valid">
+    Regisztráció
+  </button>
+  <button type="button" mat-raised-button color="accent" routerLink="/login">Belépés</button>
+</form>

@@ -1,0 +1,12 @@
+.page {
+  background-image: url('https://i.pinimg.com/originals/7d/b3/cb/7db3cb0eb0a0a3eee0b006965797db39.gif');
+}
+
+.page::before {
+  background: none;
+}
+
+h1 {
+  color: black;
+  background-color: white;
+}

@@ -1,0 +1,30 @@
+<table matSort (matSortChange)="sortMeals($event)">
+  <h1>Cart</h1>
+
+  <!-- Headers -->
+  <tr>
+    <th mat-sort-header="name">Name</th>
+    <th mat-sort-header="unit price">Unit Price</th>
+    <th mat-sort-header="price">Price</th>
+    <th mat-sort-header="quantity">Quantity</th>
+    <th disabled mat-sort-header="delete">Delete</th>
+  </tr>
+
+  <!-- Columns -->
+  <tr *ngFor="let cartItem of cart">
+    <td>{{ cartItem.name }}</td>
+    <td>{{ cartItem.price | currency : 'HUF' }}</td>
+    <td>{{ cartItem.price * cartItem.quantity | currency : 'HUF' }}</td>
+    <td>
+      <app-number-input
+        class="number-input"
+        [num]="cartItem.quantity"
+        (numChange)="onQuantityChange($event, cartItem)"></app-number-input>
+    </td>
+    <td>
+      <button mat-icon-button (click)="onRemoveFromCart(cartItem)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </tr>
+</table>

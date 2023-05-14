@@ -1,0 +1,61 @@
+<div class="container">
+  <!-- Navbar -->
+  <app-navbar class="navbar" (toggleSidenav)="toggleSidenav($event)">
+    <ng-template [ngTemplateOutlet]="menuList"></ng-template>
+  </app-navbar>
+
+  <mat-drawer-container class="drawer-container">
+    <!-- Sidenav -->
+    <mat-drawer class="mat-drawer" mode="over" [opened]="isSidenavOpen">
+      <div class="vertical-navbar">
+        <ng-template [ngTemplateOutlet]="menuList"></ng-template>
+      </div>
+    </mat-drawer>
+
+    <!-- Main content -->
+    <mat-drawer-content class="drawer-content">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
+
+<!-- Template that project to navbar -->
+<ng-template #menuList>
+  <span class="nav-item mat-headline-6" routerLinkActive="active" routerLink="/home"
+    >FoodKoala</span
+  >
+  <span class="nav-item mat-headline-6" routerLinkActive="active" routerLink="/foods"
+    >Foods</span
+  >
+
+
+  <!-- Load only user is logged in, else load #loggedInUser template -->
+  <div class="nav-items" *ngIf="currentRoute$ | async as currentRoute">
+    <ng-container *ngIf="!(authState$ | async); else loggedInUser">
+      <span
+        *ngIf="currentRoute === '/register' || currentRoute !== '/login'"
+        class="nav-item mat-headline-6"
+        routerLinkActive="active"
+        routerLink="/login">
+        Belépés
+      </span>
+      <span
+        *ngIf="currentRoute === '/login'"
+        class="nav-item mat-headline-6"
+        routerLinkActive="active"
+        routerLink="/register">
+        Regisztráció
+      </span>
+    </ng-container>
+  </div>
+</ng-template>
+
+<!-- Visible only the user is not logged in -->
+<ng-template #loggedInUser>
+  <span class="nav-item mat-headline-6" routerLinkActive="active" routerLink="/cart">
+    <mat-icon>shopping_cart</mat-icon>
+  </span>
+  <span class="nav-item mat-headline-6">
+    <mat-icon  (click)="onLogoutClick($event)">logout</mat-icon>
+  </span>
+</ng-template>

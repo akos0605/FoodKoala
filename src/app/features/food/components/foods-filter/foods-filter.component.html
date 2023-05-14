@@ -1,0 +1,21 @@
+<form action="" [formGroup]="filterForm" class="card">
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by</mat-label>
+    <mat-select formControlName="filterType">
+      <mat-option [value]="option" *ngFor="let option of filterTypes">
+        {{ option | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container *ngLet="filterValues$ | async as filterValues">
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by</mat-label>
+      <mat-select [value]="filterValues?.[0] || ''" formControlName="filterValue">
+        <mat-option [value]="option" *ngFor="let option of filterValues">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+</form>

@@ -1,0 +1,31 @@
+@import '/src/styles/variables.scss';
+
+.num-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  border-radius: 5px;
+  padding: 5px;
+
+  * {
+    margin: 5px 10px;
+  }
+
+  mat-icon {
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s background-color;
+  }
+
+  .mat-icon:hover {
+    background-color: $purple;
+    color: white;
+  }
+}
+
+.disabled {
+  cursor: default !important;
+  color: black !important;
+  background-color: rgb(230, 230, 230) !important;
+}

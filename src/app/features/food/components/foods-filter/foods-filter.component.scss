@@ -1,0 +1,11 @@
+.card {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+
+  mat-form-field {
+    margin: 0 10px;
+    width: 100%;
+  }
+}

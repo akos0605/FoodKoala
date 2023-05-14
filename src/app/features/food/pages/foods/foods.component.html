@@ -1,0 +1,4 @@
+<div class="page">
+  <app-foods-filter (filterChange)="onFilterChange($event)"></app-foods-filter>
+  <app-foods-grid *ngIf="meals$ | async as meals" [meals]="meals"></app-foods-grid>
+</div>

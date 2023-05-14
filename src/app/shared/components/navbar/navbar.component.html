@@ -1,0 +1,13 @@
+<mat-toolbar class="toolbar" color="primary" *ngLet="isMobile$ | async as isMobile">
+  <!-- Menu button -->
+  <span
+    *ngIf="isMobile"
+    mat-icon-button
+    class="nav-item menu-icon"
+    (click)="onMenuClick($event)">
+    <mat-icon>menu</mat-icon>
+  </span>
+
+  <!-- Projected content -->
+  <ng-content *ngIf="!isMobile"> </ng-content>
+</mat-toolbar>

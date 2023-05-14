@@ -1,0 +1,51 @@
+<div class="page" *ngIf="meal$ | async as meal">
+  <mat-grid-list
+    *ngIf="layout$ | async as layout"
+    cols="40"
+    rowHeight="fit"
+    [ngStyle]="{ 'width.%': layout.gridWidth, 'height.%': layout.gridHeight }">
+    <!-- Meal image -->
+    <mat-grid-tile
+      [colspan]="layout.layout.image.col"
+      [rowspan]="layout.layout.image.row">
+      <img class="meal-pic" [src]="meal.strMealThumb" [alt]="meal.strMeal" />
+    </mat-grid-tile>
+
+    <!-- Meal details -->
+    <mat-grid-tile
+      [colspan]="layout.layout.details.col"
+      [rowspan]="layout.layout.details.row">
+      <div class="details">
+        <h1>{{ meal.strMeal }}</h1>
+        <h4>{{ meal.strArea }} - {{ meal.strCategory }}</h4>
+        <mat-chip-set>
+          <mat-chip class="tag-chip" *ngFor="let tag of meal.strTags | strToArray: ','">
+            <span> #{{ tag }} </span>
+          </mat-chip>
+        </mat-chip-set>
+        <a [href]="meal.strYoutube" target="_blank">Youtube</a>
+      </div>
+    </mat-grid-tile>
+
+    <!-- Ingredients -->
+    <mat-grid-tile
+      [colspan]="layout.layout.ingredients.col"
+      [rowspan]="layout.layout.ingredients.row">
+      <div class="ingredient-table">
+        <app-ingredient-table [ingredients]="meal.ingredients">
+          <h2>Ingredients</h2>
+        </app-ingredient-table>
+      </div>
+    </mat-grid-tile>
+
+    <!-- Instructions -->
+    <mat-grid-tile
+      [colspan]="layout.layout.instructions.col"
+      [rowspan]="layout.layout.instructions.row">
+      <div class="instructions">
+        <h2>Instructions</h2>
+        {{ meal.strInstructions }}
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

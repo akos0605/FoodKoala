@@ -1,0 +1,34 @@
+<div class="page">
+  <div class="card" *ngLet="vm$ | async as vm">
+    <ng-container *ngIf="vm?.totalPrice; else emptyCart">
+      <ng-container [ngSwitch]="vm?.isMobile">
+        <app-cart-list
+          *ngSwitchCase="true"
+          [cart]="vm!.cart"
+          (quantityChange)="onQuantityChange($event)"
+          (removeFromCart)="onRemoveFromCart($event)"></app-cart-list>
+        <app-cart-table
+          *ngSwitchCase="false"
+          [cart]="vm!.cart"
+          (quantityChange)="onQuantityChange($event)"
+          (removeFromCart)="onRemoveFromCart($event)"></app-cart-table>
+      </ng-container>
+      <div class="total">
+        <mat-divider></mat-divider>
+        <div class="footer">
+          <div>
+            <h2>Total Price</h2>
+            {{ vm!.totalPrice | currency : 'HUF' }}
+          </div>
+          <button [disabled]="!vm!.isOnline" mat-raised-button color="primary">
+            Buy
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <h1>Your cart is still emepty :(</h1>
+</ng-template>

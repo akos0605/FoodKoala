@@ -1,0 +1,23 @@
+{
+  "name": "FoodCoala",
+  "short_name": "FoodCoala",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/icon-1.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-2.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

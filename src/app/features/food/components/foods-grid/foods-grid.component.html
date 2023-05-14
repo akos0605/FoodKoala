@@ -1,0 +1,11 @@
+<mat-grid-list [cols]="columns$ | async" [rowHeight]="'2:1.5'" [gutterSize]="'10px'">
+  <mat-grid-tile class="grid-tile" *ngFor="let meal of meals">
+    <app-foods-grid-item
+      *ngLet="isUserLoggedIn$ | async; let isUserLoggedIn"
+      (addToCartClick)="addToCart($event)"
+      (viewClick)="view($event)"
+      [isAddToCartShowing]="isUserLoggedIn!"
+      [isViewButtonShowing]="(isOnline$ | async)!"
+      [meal]="meal"></app-foods-grid-item>
+  </mat-grid-tile>
+</mat-grid-list>

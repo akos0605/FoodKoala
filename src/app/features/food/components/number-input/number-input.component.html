@@ -1,0 +1,14 @@
+<div class="num-input mat-elevation-z2">
+  <mat-icon
+    class="mat-elevation-z1"
+    [ngClass]="{ disabled: disabled || num === 1 }"
+    (click)="onSubstract()">
+    remove
+  </mat-icon>
+  <span>
+    {{ num }}
+  </span>
+  <mat-icon class="mat-elevation-z1" [ngClass]="{ disabled: disabled }" (click)="onAdd()"
+    >add
+  </mat-icon>
+</div>

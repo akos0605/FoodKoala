@@ -1,0 +1,32 @@
+<form class="auth-form" action="" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+  <h2>Belépés</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput formControlName="email" />
+    <mat-error *ngIf="error.getError(loginForm, 'email', 'required')">
+      A mező kitöltése kötelező
+    </mat-error>
+    <mat-error *ngIf="error.getError(loginForm, 'email', 'email')">
+      Az email cím nem megfelelő
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Jelszó</mat-label>
+    <input type="password" matInput formControlName="password" />
+    <mat-error *ngIf="error.getError(loginForm, 'password', 'required')">
+      A mező kitöltése kötelező
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Belépés</button>
+  <button
+    type="button"
+    mat-raised-button
+    color="accent"
+    type="button"
+    routerLink="/register"
+    routerLinkActive="router-link-active">
+    Regisztráció
+  </button>
+</form>

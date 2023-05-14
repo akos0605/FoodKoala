@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "progressive-web-app-1e844": {
+      "hosting": {
+        "progressive-web-app": [
+          "progressive-web-app-1e844"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "progressive-web-app-1e844"
+  }
+}

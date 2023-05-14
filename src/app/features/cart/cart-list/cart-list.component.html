@@ -1,0 +1,18 @@
+<div>
+  <h1>Cart</h1>
+  <mat-card *ngFor="let cartItem of cart">
+    <mat-card-header>
+      <mat-card-title>{{ cartItem.name }}</mat-card-title>
+      <mat-card-subtitle>{{ cartItem.price | currency : 'HUF' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <app-number-input
+        class="number-input"
+        [num]="cartItem.quantity"
+        (numChange)="onQuantityChange($event, cartItem)"></app-number-input>
+      <button mat-icon-button (click)="onRemoveFromCart(cartItem)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

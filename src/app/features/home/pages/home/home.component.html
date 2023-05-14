@@ -1,0 +1,22 @@
+<div
+  class="page"
+  *ngLet="isMobile$ | async as isMobile"
+  [ngClass]="{ 'mobile-view': isMobile }">
+  <div class="flex-item card">
+    <div>
+      <p class="welcome-text">
+        Our food webshop home screen offers a visually stunning display of our
+        best-selling food items, easy navigation, and detailed descriptions of each item.
+        Our checkout process is user-friendly and provides fast and reliable delivery.
+      </p>
+      <button mat-raised-button color="primary" routerLink="/foods">List of foods</button>
+    </div>
+  </div>
+  <div class="flex-item" *ngIf="!isMobile">
+    <img
+      *ngIf="randomMeal$ | async as randomMeal"
+      class="pic"
+      [src]="randomMeal"
+      alt="AH EZAZ EZAZ EGYÉÉL MEEEG" />
+  </div>
+</div>
